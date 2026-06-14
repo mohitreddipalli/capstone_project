@@ -1,0 +1,362 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}Analytics Dashboard - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-chart-line"></i> Analytics Dashboard</h1>
+        <p class="text-muted">Track your career progress and learning insights</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- KPI Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Profile Views</h6>
+                    <h3 class="mb-2">127</h3>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +12% this month</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Job Matches</h6>
+                    <h3 class="mb-2">24</h3>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +8% this month</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Learning Hours</h6>
+                    <h3 class="mb-2">45</h3>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +5 hours this week</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Skill Score</h6>
+                    <h3 class="mb-2">82</h3>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +3 points</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+        <!-- Application Status Chart -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Application Status Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="applicationChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Progress Chart -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Learning Progress</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="learningChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Over Time -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Your Activity (Last 12 Weeks)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="activityChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Radar Chart -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Skills Assessment</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="skillsChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Matches by Category -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Job Matches by Category</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="jobCategoryChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Growth Over Time -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Skills Growth (Last 6 Months)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="skillsGrowthChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Statistics -->
+    <div class="row">
+        <!-- Top Skills -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Top Skills</h5>
+                </div>
+                <div class="card-body">
+                    <div class="skill-stat mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <strong>Python</strong>
+                            <span class="badge bg-success">Expert</span>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-success" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-stat mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <strong>JavaScript</strong>
+                            <span class="badge bg-primary">Advanced</span>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-primary" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-stat mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <strong>React</strong>
+                            <span class="badge bg-primary">Advanced</span>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-primary" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-stat mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <strong>AWS</strong>
+                            <span class="badge bg-info">Intermediate</span>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-info" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-stat">
+                        <div class="d-flex justify-content-between mb-1">
+                            <strong>Machine Learning</strong>
+                            <span class="badge bg-warning">Beginner</span>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Recommendations</h5>
+                </div>
+                <div class="card-body">
+                    <div class="recommendation-item p-3 border-bottom">
+                        <h6 class="mb-1"><i class="fas fa-lightbulb text-warning"></i> Focus on AWS</h6>
+                        <small class="text-muted">AWS skills are in high demand. You're at intermediate level. Consider taking the AWS Solutions Architect course.</small>
+                    </div>
+                    <div class="recommendation-item p-3 border-bottom">
+                        <h6 class="mb-1"><i class="fas fa-trending-up text-success"></i> Machine Learning Opportunity</h6>
+                        <small class="text-muted">You have strong Python foundation. ML Engineer roles match 92%. Start ML Fundamentals course.</small>
+                    </div>
+                    <div class="recommendation-item p-3">
+                        <h6 class="mb-1"><i class="fas fa-briefcase text-primary"></i> Leadership Path</h6>
+                        <small class="text-muted">After 5 years experience, you're ready for Tech Lead role. Add management training to your roadmap.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const chartDefaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            labels: {
+                font: { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" }
+            }
+        }
+    }
+};
+
+// Application Status Chart
+const appCtx = document.getElementById('applicationChart').getContext('2d');
+new Chart(appCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Applied', 'Under Review', 'Shortlisted', 'Rejected'],
+        datasets: [{
+            data: [5, 3, 2, 7],
+            backgroundColor: ['#0A84FF', '#FF9500', '#34C759', '#FF3B30'],
+            borderColor: '#fff',
+            borderWidth: 2
+        }]
+    },
+    options: chartDefaults
+});
+
+// Learning Progress Chart
+const learnCtx = document.getElementById('learningChart').getContext('2d');
+new Chart(learnCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Completed', 'In Progress', 'Not Started'],
+        datasets: [{
+            data: [2, 3, 5],
+            backgroundColor: ['#34C759', '#FF9500', '#E5E5EA'],
+            borderColor: '#fff',
+            borderWidth: 2
+        }]
+    },
+    options: chartDefaults
+});
+
+// Activity Over Time Chart
+const actCtx = document.getElementById('activityChart').getContext('2d');
+new Chart(actCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12'],
+        datasets: [{
+            label: 'Learning Hours',
+            data: [5, 8, 6, 9, 7, 10, 8, 12, 9, 11, 10, 13],
+            backgroundColor: '#0A84FF',
+            borderRadius: 4
+        }]
+    },
+    options: {
+        ...chartDefaults,
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+
+// Skills Radar Chart
+const skillCtx = document.getElementById('skillsChart').getContext('2d');
+new Chart(skillCtx, {
+    type: 'radar',
+    data: {
+        labels: ['Problem Solving', 'Communication', 'Technical Skills', 'Leadership', 'Time Management', 'Creativity'],
+        datasets: [{
+            label: 'Your Skills',
+            data: [85, 78, 95, 65, 80, 70],
+            borderColor: '#0A84FF',
+            backgroundColor: 'rgba(10, 132, 255, 0.1)',
+            borderWidth: 2,
+            pointBackgroundColor: '#0A84FF'
+        }]
+    },
+    options: chartDefaults
+});
+
+// Job Matches by Category Chart
+const jobCtx = document.getElementById('jobCategoryChart').getContext('2d');
+new Chart(jobCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Full Stack', 'Frontend', 'Backend', 'ML Engineer', 'DevOps'],
+        datasets: [{
+            label: 'Job Matches',
+            data: [8, 5, 6, 4, 3],
+            backgroundColor: '#0A84FF',
+            borderRadius: 4
+        }]
+    },
+    options: {
+        ...chartDefaults,
+        indexAxis: 'y',
+        scales: {
+            x: { beginAtZero: true }
+        }
+    }
+});
+
+// Skills Growth Chart
+const growthCtx = document.getElementById('skillsGrowthChart').getContext('2d');
+new Chart(growthCtx, {
+    type: 'line',
+    data: {
+        labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+        datasets: [
+            {
+                label: 'Python',
+                data: [75, 78, 82, 85, 90, 95],
+                borderColor: '#0A84FF',
+                backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'JavaScript',
+                data: [65, 68, 72, 76, 80, 85],
+                borderColor: '#30B0C0',
+                backgroundColor: 'rgba(48, 176, 192, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'React',
+                data: [60, 64, 68, 72, 76, 80],
+                borderColor: '#34C759',
+                backgroundColor: 'rgba(52, 199, 89, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            }
+        ]
+    },
+    options: {
+        ...chartDefaults,
+        scales: {
+            y: { beginAtZero: true, max: 100 }
+        }
+    }
+});
+</script>
+{% endblock %}

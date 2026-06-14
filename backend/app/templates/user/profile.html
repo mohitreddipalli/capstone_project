@@ -1,0 +1,237 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}My Profile - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-user-circle"></i> My Profile</h1>
+        <p class="text-muted">Manage your personal information and professional details</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Profile Card -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <form id="profileForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="{{ user.first_name }}" id="firstName" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="{{ user.last_name }}" id="lastName" disabled>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" value="{{ user.email }}" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" value="{{ user.username }}" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="Enter phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" placeholder="City, Country">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Professional Headline</label>
+                            <input type="text" class="form-control" placeholder="e.g., Full Stack Developer | Python Expert">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-control" rows="4" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="card mt-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Skills</h5>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addSkillModal">
+                            <i class="fas fa-plus"></i> Add Skill
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="skillsList">
+                        <div class="skill-item d-flex justify-content-between align-items-center p-3 border-bottom">
+                            <div>
+                                <h6 class="mb-1">Python</h6>
+                                <small class="text-muted">Advanced • 5 years</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                        <div class="skill-item d-flex justify-content-between align-items-center p-3 border-bottom">
+                            <div>
+                                <h6 class="mb-1">JavaScript</h6>
+                                <small class="text-muted">Intermediate • 3 years</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                        <div class="skill-item d-flex justify-content-between align-items-center p-3">
+                            <div>
+                                <h6 class="mb-1">Data Science</h6>
+                                <small class="text-muted">Intermediate • 2 years</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="card mt-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Education</h5>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addEducationModal">
+                            <i class="fas fa-plus"></i> Add Education
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="education-item p-3 border-bottom">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">Bachelor of Science in Computer Science</h6>
+                                <p class="text-muted mb-1">University of Technology</p>
+                                <small class="text-muted">2018 - 2022</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="card mt-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Experience</h5>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienceModal">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="experience-item p-3 border-bottom">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">Senior Software Engineer</h6>
+                                <p class="text-muted mb-1">Tech Company Inc.</p>
+                                <small class="text-muted">Jan 2022 - Present</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Profile Completeness -->
+            <div class="card mb-4">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0">Profile Completeness</h6>
+                </div>
+                <div class="card-body">
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                    <small class="text-muted">
+                        <ul class="ps-3">
+                            <li>✓ Basic Info</li>
+                            <li>✓ Skills</li>
+                            <li>✗ Profile Photo</li>
+                            <li>✗ Resume</li>
+                        </ul>
+                    </small>
+                </div>
+            </div>
+
+            <!-- Account Status -->
+            <div class="card">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0">Account Status</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-1">Member Since</small>
+                        <strong>June 14, 2024</strong>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-1">Account Status</small>
+                        <span class="badge bg-success">Active & Verified</span>
+                    </div>
+                    <div>
+                        <small class="text-muted d-block mb-1">Last Updated</small>
+                        <strong>Today at 2:30 PM</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="addSkillModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Skill</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Skill Name</label>
+                    <input type="text" class="form-control" placeholder="e.g., Python, React, etc.">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Proficiency Level</label>
+                    <select class="form-control">
+                        <option>Beginner</option>
+                        <option selected>Intermediate</option>
+                        <option>Advanced</option>
+                        <option>Expert</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Years of Experience</label>
+                    <input type="number" class="form-control" placeholder="e.g., 3" min="0" step="0.5">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Add Skill</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('profileForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Profile updated successfully!');
+});
+</script>
+{% endblock %}

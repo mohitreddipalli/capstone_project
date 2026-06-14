@@ -1,0 +1,290 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}My Courses - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-book"></i> My Courses</h1>
+        <p class="text-muted">Track your learning progress</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- Course Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--primary-color);">5</h4>
+                    <p class="text-muted mb-0">Enrolled Courses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--success-color);">2</h4>
+                    <p class="text-muted mb-0">Completed</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--warning-color);">3</h4>
+                    <p class="text-muted mb-0">In Progress</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--secondary-color);">2</h4>
+                    <p class="text-muted mb-0">Certificates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <ul class="nav nav-tabs mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all">All</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="progress-tab" data-bs-toggle="tab" data-bs-target="#progress">In Progress</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed">Completed</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="all">
+            <div class="row">
+                <!-- Course 1 - In Progress -->
+                <div class="col-lg-6 mb-4">
+                    <div class="course-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title">Complete Python Bootcamp</h5>
+                                    <small class="text-muted">Started: June 1, 2024</small>
+                                </div>
+                                <span class="badge bg-warning">In Progress</span>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-3">by John Doe</p>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small><strong>Progress</strong></small>
+                                    <small>65%</small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" style="width: 65%">65%</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-video"></i> 26 of 40 videos watched<br>
+                                    <i class="fas fa-check"></i> 8 of 12 quizzes completed
+                                </small>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary flex-grow-1">
+                                    <i class="fas fa-play"></i> Continue Learning
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 - In Progress -->
+                <div class="col-lg-6 mb-4">
+                    <div class="course-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title">React.js Masterclass</h5>
+                                    <small class="text-muted">Started: June 5, 2024</small>
+                                </div>
+                                <span class="badge bg-warning">In Progress</span>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-3">by Jane Smith</p>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small><strong>Progress</strong></small>
+                                    <small>45%</small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" style="width: 45%">45%</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-video"></i> 16 of 35 videos watched<br>
+                                    <i class="fas fa-check"></i> 5 of 10 projects completed
+                                </small>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary flex-grow-1">
+                                    <i class="fas fa-play"></i> Continue Learning
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 - In Progress -->
+                <div class="col-lg-6 mb-4">
+                    <div class="course-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title">Machine Learning Fundamentals</h5>
+                                    <small class="text-muted">Started: June 8, 2024</small>
+                                </div>
+                                <span class="badge bg-warning">In Progress</span>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-3">by Dr. Alex Kumar</p>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small><strong>Progress</strong></small>
+                                    <small>20%</small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" style="width: 20%">20%</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-video"></i> 10 of 50 videos watched<br>
+                                    <i class="fas fa-check"></i> 2 of 15 assignments completed
+                                </small>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary flex-grow-1">
+                                    <i class="fas fa-play"></i> Continue Learning
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 - Completed -->
+                <div class="col-lg-6 mb-4">
+                    <div class="course-card card h-100 border-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title">Web Development Basics</h5>
+                                    <small class="text-muted">Completed: May 15, 2024</small>
+                                </div>
+                                <span class="badge bg-success">Completed</span>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-3">by Sarah Johnson</p>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small><strong>Progress</strong></small>
+                                    <small>100%</small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-success" style="width: 100%">100%</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="badge bg-success me-2">
+                                    <i class="fas fa-certificate"></i> Certificate Earned
+                                </span>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary flex-grow-1">
+                                    <i class="fas fa-eye"></i> View Certificate
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 5 - Completed -->
+                <div class="col-lg-6 mb-4">
+                    <div class="course-card card h-100 border-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title">JavaScript Fundamentals</h5>
+                                    <small class="text-muted">Completed: May 1, 2024</small>
+                                </div>
+                                <span class="badge bg-success">Completed</span>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-3">by Mike Chen</p>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small><strong>Progress</strong></small>
+                                    <small>100%</small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-success" style="width: 100%">100%</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="badge bg-success me-2">
+                                    <i class="fas fa-certificate"></i> Certificate Earned
+                                </span>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary flex-grow-1">
+                                    <i class="fas fa-eye"></i> View Certificate
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="progress">
+            <p class="text-muted">3 courses in progress...</p>
+        </div>
+
+        <div class="tab-pane fade" id="completed">
+            <p class="text-muted">2 courses completed</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.course-card button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const text = this.textContent.trim();
+        alert(text + ' action clicked');
+    });
+});
+</script>
+{% endblock %}

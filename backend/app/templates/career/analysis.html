@@ -1,0 +1,212 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}Career Analysis - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-brain"></i> Career Analysis</h1>
+        <p class="text-muted">AI-powered insights into your career path and recommendations</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Career Overview -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Your Career Profile</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="stat-box p-3 rounded-2" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <small class="text-white">Current Level</small>
+                                <h4 class="text-white mb-0">Senior Developer</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-box p-3 rounded-2" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <small class="text-white">Experience</small>
+                                <h4 class="text-white mb-0">5+ Years</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="mb-3">Career Strengths</h6>
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">💻 Technical Skills</span>
+                                <span class="badge bg-success">Strong</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">🎯 Leadership</span>
+                                <span class="badge bg-info">Moderate</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-info" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">🤝 Communication</span>
+                                <span class="badge bg-success">Strong</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">🧠 Problem Solving</span>
+                                <span class="badge bg-success">Strong</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Paths -->
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0">Recommended Paths</h6>
+                </div>
+                <div class="card-body">
+                    <div class="recommended-path p-3 border-bottom">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <strong>AI/ML Engineer</strong>
+                            <span class="badge bg-success">92%</span>
+                        </div>
+                        <small class="text-muted">Your technical skills align perfectly</small>
+                    </div>
+                    <div class="recommended-path p-3 border-bottom">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <strong>Tech Lead</strong>
+                            <span class="badge bg-success">88%</span>
+                        </div>
+                        <small class="text-muted">Great foundation for leadership role</small>
+                    </div>
+                    <div class="recommended-path p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <strong>Full Stack Architect</strong>
+                            <span class="badge bg-info">75%</span>
+                        </div>
+                        <small class="text-muted">Good fit with experience boost</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Gap Analysis -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Skill Gap Analysis for Your Next Role</h5>
+                </div>
+                <div class="card-body">
+                    <div class="gap-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Machine Learning</strong>
+                            <small class="text-muted">Beginner → Advanced (6 months)</small>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar" style="width: 40%; background: linear-gradient(90deg, #FF6B6B 0%, #FFA500 100%);"></div>
+                        </div>
+                    </div>
+                    <div class="gap-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Cloud Architecture (AWS)</strong>
+                            <small class="text-muted">Intermediate → Advanced (3 months)</small>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar" style="width: 65%; background: linear-gradient(90deg, #FF9500 0%, #34C759 100%);"></div>
+                        </div>
+                    </div>
+                    <div class="gap-item">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Team Management</strong>
+                            <small class="text-muted">Beginner → Intermediate (4 months)</small>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar" style="width: 30%; background: linear-gradient(90deg, #FF6B6B 0%, #FF9500 100%);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Roadmap -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Personalized Learning Roadmap</h5>
+                </div>
+                <div class="card-body">
+                    <div class="roadmap-item mb-4 p-3 rounded-2" style="background: linear-gradient(135deg, rgba(0, 132, 255, 0.1) 0%, rgba(48, 176, 192, 0.1) 100%);">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--primary-color); color: white; flex-shrink: 0;">1</div>
+                            </div>
+                            <div>
+                                <h6>Machine Learning Fundamentals</h6>
+                                <p class="text-muted mb-2">Estimated: 8 weeks | Difficulty: Intermediate</p>
+                                <small>
+                                    <strong>Recommended Courses:</strong><br>
+                                    • ML Basics by Andrew Ng<br>
+                                    • Python for Data Science
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item mb-4 p-3 rounded-2" style="background: linear-gradient(135deg, rgba(48, 176, 192, 0.1) 0%, rgba(52, 199, 89, 0.1) 100%);">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--secondary-color); color: white; flex-shrink: 0;">2</div>
+                            </div>
+                            <div>
+                                <h6>Advanced AWS Architecture</h6>
+                                <p class="text-muted mb-2">Estimated: 6 weeks | Difficulty: Advanced</p>
+                                <small>
+                                    <strong>Recommended Courses:</strong><br>
+                                    • AWS Solutions Architect<br>
+                                    • Cloud Security Fundamentals
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item p-3 rounded-2" style="background: linear-gradient(135deg, rgba(52, 199, 89, 0.1) 0%, rgba(52, 199, 89, 0.1) 100%);">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--success-color); color: white; flex-shrink: 0;">3</div>
+                            </div>
+                            <div>
+                                <h6>Leadership & Management</h6>
+                                <p class="text-muted mb-2">Estimated: 6 weeks | Difficulty: Intermediate</p>
+                                <small>
+                                    <strong>Recommended Courses:</strong><br>
+                                    • Effective Team Leadership<br>
+                                    • Project Management Pro
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

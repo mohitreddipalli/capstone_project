@@ -1,0 +1,313 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}Dashboard - AI Career Platform{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-chart-bar"></i> Dashboard
+    </h1>
+    <p class="page-subtitle">Welcome back, {{ user.first_name or user.username }}! Here's your career overview.</p>
+</div>
+
+<!-- Stats Grid -->
+<div class="stats-grid">
+    <div class="stat-box">
+        <div class="stat-icon primary">
+            <i class="fas fa-file-pdf"></i>
+        </div>
+        <div class="stat-content">
+            <h3>85</h3>
+            <p>Resume Score</p>
+        </div>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-icon success">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="stat-content">
+            <h3>12</h3>
+            <p>Jobs Matched</p>
+        </div>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-icon warning">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-content">
+            <h3>5</h3>
+            <p>Applications</p>
+        </div>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-icon secondary">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="stat-content">
+            <h3>3</h3>
+            <p>Courses Enrolled</p>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Grid -->
+<div class="row">
+    <!-- Left Column -->
+    <div class="col-lg-8">
+        <!-- Recommended Jobs -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-star text-warning"></i> Recommended For You
+                    </h5>
+                    <a href="/jobs" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Job Card 1 -->
+                <div class="job-recommendation mb-4 pb-4" style="border-bottom: 1px solid var(--light-border);">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="mb-1" style="font-weight: 600;">Senior React Developer</h6>
+                            <p class="mb-2" style="color: #666; font-size: 0.9rem;">
+                                <i class="fas fa-building"></i> Tech Solutions Inc.
+                                <span class="ms-3"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                            </p>
+                        </div>
+                        <span class="badge bg-success" style="font-size: 0.9rem;">92% Match</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Build scalable React applications with a focus on performance and user experience...</p>
+                    <div class="d-flex gap-2">
+                        <a href="/jobs/1" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> View Details
+                        </a>
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-heart"></i> Save
+                        </button>
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-paper-plane"></i> Apply
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="job-recommendation mb-4 pb-4" style="border-bottom: 1px solid var(--light-border);">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="mb-1" style="font-weight: 600;">Full Stack Engineer</h6>
+                            <p class="mb-2" style="color: #666; font-size: 0.9rem;">
+                                <i class="fas fa-building"></i> StartUp Inc.
+                                <span class="ms-3"><i class="fas fa-map-marker-alt"></i> New York, NY</span>
+                            </p>
+                        </div>
+                        <span class="badge bg-success" style="font-size: 0.9rem;">88% Match</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Looking for a full stack engineer to join our growing team and lead backend architecture...</p>
+                    <div class="d-flex gap-2">
+                        <a href="/jobs/2" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> View Details
+                        </a>
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-heart"></i> Save
+                        </button>
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-paper-plane"></i> Apply
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="job-recommendation">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="mb-1" style="font-weight: 600;">Python Developer</h6>
+                            <p class="mb-2" style="color: #666; font-size: 0.9rem;">
+                                <i class="fas fa-building"></i> Enterprise Corp
+                                <span class="ms-3"><i class="fas fa-map-marker-alt"></i> Austin, TX</span>
+                            </p>
+                        </div>
+                        <span class="badge bg-warning" style="font-size: 0.9rem;">85% Match</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Develop backend services and APIs using Python and modern frameworks...</p>
+                    <div class="d-flex gap-2">
+                        <a href="/jobs/3" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> View Details
+                        </a>
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-heart"></i> Save
+                        </button>
+                        <button class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-paper-plane"></i> Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-history"></i> Recent Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--light-border);">
+                    <div style="min-width: 40px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(52, 199, 89, 0.2); display: flex; align-items: center; justify-content: center; color: var(--success-color);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 style="margin: 0 0 0.25rem 0;">Resume Score Updated</h6>
+                        <p style="margin: 0; color: #666; font-size: 0.9rem;">Your resume score has been updated to 85/100</p>
+                        <small style="color: #999;">2 hours ago</small>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--light-border);">
+                    <div style="min-width: 40px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(10, 132, 255, 0.2); display: flex; align-items: center; justify-content: center; color: var(--primary-color);">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 style="margin: 0 0 0.25rem 0;">New Job Recommendations</h6>
+                        <p style="margin: 0; color: #666; font-size: 0.9rem;">12 new high-match jobs have been added to your recommendations</p>
+                        <small style="color: #999;">5 hours ago</small>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1.5rem;">
+                    <div style="min-width: 40px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 149, 0, 0.2); display: flex; align-items: center; justify-content: center; color: var(--warning-color);">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 style="margin: 0 0 0.25rem 0;">Course Enrolled</h6>
+                        <p style="margin: 0; color: #666; font-size: 0.9rem;">You enrolled in "Advanced TypeScript" course</p>
+                        <small style="color: #999;">1 day ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+        <!-- Quick Stats -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-lightning-bolt"></i> Quick Stats
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem;">
+                        <span>Profile Completeness</span>
+                        <strong>75%</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-info" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem;">
+                        <span>Application Rate</span>
+                        <strong>40%</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-warning" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem;">
+                        <span>Learning Progress</span>
+                        <strong>60%</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Progress -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-book"></i> My Courses
+                    </h5>
+                    <a href="/courses" class="btn btn-sm btn-link" style="padding: 0; color: var(--primary-color); text-decoration: none;">Browse More</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="mb-3 pb-3" style="border-bottom: 1px solid var(--light-border);">
+                    <div class="d-flex justify-content-between mb-2">
+                        <strong style="font-size: 0.9rem;">Advanced TypeScript</strong>
+                        <small style="color: #999;">80%</small>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar" style="width: 80%; background: var(--success-color);"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3 pb-3" style="border-bottom: 1px solid var(--light-border);">
+                    <div class="d-flex justify-content-between mb-2">
+                        <strong style="font-size: 0.9rem;">React Performance</strong>
+                        <small style="color: #999;">60%</small>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar" style="width: 60%; background: var(--warning-color);"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <strong style="font-size: 0.9rem;">System Design</strong>
+                        <small style="color: #999;">40%</small>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar" style="width: 40%; background: var(--primary-color);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-arrow-right"></i> Next Steps
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/user/resume" class="btn btn-primary" style="justify-content: flex-start;">
+                        <i class="fas fa-upload"></i> Upload Resume
+                    </a>
+                    <a href="/career/analysis" class="btn btn-outline-primary" style="justify-content: flex-start;">
+                        <i class="fas fa-brain"></i> Career Analysis
+                    </a>
+                    <a href="/user/profile" class="btn btn-outline-primary" style="justify-content: flex-start;">
+                        <i class="fas fa-user-edit"></i> Complete Profile
+                    </a>
+                    <a href="/courses" class="btn btn-outline-primary" style="justify-content: flex-start;">
+                        <i class="fas fa-graduation-cap"></i> Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

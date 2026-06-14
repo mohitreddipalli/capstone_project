@@ -1,0 +1,169 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}Resume - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-file-pdf"></i> Resume & Documents</h1>
+        <p class="text-muted">Upload and manage your resume and other documents</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Upload Resume -->
+            <div class="card mb-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Upload Resume</h5>
+                </div>
+                <div class="card-body">
+                    <div class="upload-area border-2 border-dashed rounded-3 p-5 text-center" style="cursor: pointer; transition: all 0.3s;">
+                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                        <h6>Drag and drop your resume here</h6>
+                        <p class="text-muted mb-3">or click to browse</p>
+                        <small class="text-muted">Supported formats: PDF, DOC, DOCX (Max 5MB)</small>
+                        <input type="file" class="form-control d-none" id="resumeUpload" accept=".pdf,.doc,.docx">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Resume -->
+            <div class="card mb-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Your Resume</h5>
+                </div>
+                <div class="card-body">
+                    <div class="resume-item p-4 border rounded-2 mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1"><i class="fas fa-file-pdf text-danger"></i> resume_sarah_johnson.pdf</h6>
+                                <small class="text-muted">Uploaded on June 14, 2024 • 2.3 MB</small>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resume Analysis -->
+            <div class="card mb-4">
+                <div class="card-header bg-light border-0 pb-0">
+                    <h5 class="mb-0">Resume Analysis</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6>Resume Score</h6>
+                            <span class="badge bg-success">85/100</span>
+                        </div>
+                        <div class="progress" style="height: 25px;">
+                            <div class="progress-bar bg-success" style="width: 85%">85%</div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 bg-light rounded-2">
+                                <h6 class="mb-2"><i class="fas fa-check text-success"></i> Strengths</h6>
+                                <ul class="ps-3 mb-0">
+                                    <li>Clear structure</li>
+                                    <li>Strong experience</li>
+                                    <li>Good formatting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 bg-light rounded-2">
+                                <h6 class="mb-2"><i class="fas fa-lightbulb text-warning"></i> Improvements</h6>
+                                <ul class="ps-3 mb-0">
+                                    <li>Add more keywords</li>
+                                    <li>Include certifications</li>
+                                    <li>Quantify achievements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6 class="mb-3">Extracted Information</h6>
+                        <div class="mb-3">
+                            <strong>Skills Found (12)</strong>
+                            <div class="mt-2">
+                                <span class="badge bg-primary me-2">Python</span>
+                                <span class="badge bg-primary me-2">JavaScript</span>
+                                <span class="badge bg-primary me-2">React</span>
+                                <span class="badge bg-primary me-2">SQL</span>
+                                <span class="badge bg-primary me-2">AWS</span>
+                                <span class="badge bg-primary me-2">Docker</span>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <strong>Experience (4 roles)</strong>
+                            <div class="mt-2">
+                                <small class="text-muted">Senior Software Engineer, JavaScript Developer, Web Developer, Junior Developer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0">Quick Actions</h6>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary w-100 mb-2">
+                        <i class="fas fa-magic"></i> Analyze Resume
+                    </button>
+                    <button class="btn btn-outline-primary w-100 mb-2">
+                        <i class="fas fa-wand-magic-sparkles"></i> AI Suggestions
+                    </button>
+                    <button class="btn btn-outline-primary w-100">
+                        <i class="fas fa-download"></i> Download as PDF
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-light border-0">
+                    <h6 class="mb-0">Tips</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="ps-3 small text-muted">
+                        <li>Use clear formatting</li>
+                        <li>Include metrics</li>
+                        <li>Add keywords</li>
+                        <li>Keep it concise</li>
+                        <li>Use ATS-friendly fonts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('.upload-area').addEventListener('click', function() {
+    document.getElementById('resumeUpload').click();
+});
+
+document.getElementById('resumeUpload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        alert('Resume uploaded: ' + file.name);
+    }
+});
+</script>
+{% endblock %}

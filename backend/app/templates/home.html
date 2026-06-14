@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Home - AI Career Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="container-fluid bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Transform Your Career with AI</h1>
+                <p class="lead mb-4">Get personalized job recommendations, skill analysis, and career growth roadmaps powered by artificial intelligence.</p>
+                <div>
+                    <a href="/auth/register" class="btn btn-light btn-lg me-3 mb-2">
+                        <i class="fas fa-rocket"></i> Get Started Free
+                    </a>
+                    <a href="#features" class="btn btn-outline-light btn-lg mb-2">
+                        <i class="fas fa-play"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <svg class="w-100" style="max-width: 500px" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Simple illustration -->
+                    <rect width="500" height="400" fill="rgba(255,255,255,0.1)"/>
+                    <text x="250" y="200" text-anchor="middle" font-size="40" fill="white">
+                        <tspan dy="0">🚀 AI Career</tspan>
+                        <tspan x="250" dy="50">Development Platform</tspan>
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="container py-5">
+    <div class="row text-center">
+        <div class="col-md-3 mb-4">
+            <h3 class="text-primary fw-bold">10,000+</h3>
+            <p class="text-muted">Active Users</p>
+        </div>
+        <div class="col-md-3 mb-4">
+            <h3 class="text-primary fw-bold">5,000+</h3>
+            <p class="text-muted">Job Opportunities</p>
+        </div>
+        <div class="col-md-3 mb-4">
+            <h3 class="text-primary fw-bold">500+</h3>
+            <p class="text-muted">Courses Available</p>
+        </div>
+        <div class="col-md-3 mb-4">
+            <h3 class="text-primary fw-bold">95%</h3>
+            <p class="text-muted">Match Accuracy</p>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5" id="features">
+    <h2 class="text-center mb-5 fw-bold">Powerful Features</h2>
+    
+    <div class="row g-4">
+        <!-- Resume Analysis -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Resume Analysis</h5>
+                    <p class="card-text text-muted">
+                        AI-powered resume parsing and analysis to extract skills, experience, and generate your career score.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Recommendations -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">AI Recommendations</h5>
+                    <p class="card-text text-muted">
+                        Get personalized job and career path recommendations based on your profile and skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Matching -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Smart Job Matching</h5>
+                    <p class="card-text text-muted">
+                        Advanced filtering and AJAX search to find jobs that match your skills and preferences.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Paths -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Personalized Learning</h5>
+                    <p class="card-text text-muted">
+                        Curated courses and learning roadmaps to fill skill gaps and advance your career.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Analytics Dashboard</h5>
+                    <p class="card-text text-muted">
+                        Track your progress with comprehensive charts and metrics for career growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interview Prep -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Interview Questions</h5>
+                    <p class="card-text text-muted">
+                        AI-generated interview questions tailored to your target roles and experience level.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="container text-center">
+        <h2 class="mb-4 fw-bold">Ready to Transform Your Career?</h2>
+        <p class="lead text-muted mb-4">Join thousands of professionals using AI Career Platform</p>
+        <a href="/auth/register" class="btn btn-primary btn-lg">
+            <i class="fas fa-user-plus"></i> Create Your Free Account
+        </a>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold">Frequently Asked Questions</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Is the platform free to use?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes! Basic features are completely free. Premium features are available with our subscription plans.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            How accurate are the job recommendations?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our AI achieves 95% accuracy using advanced machine learning models trained on millions of job placements.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Can I edit my profile after registration?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Absolutely! You can update your profile, skills, and resume anytime from your dashboard.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

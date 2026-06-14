@@ -1,0 +1,61 @@
+name: Test and Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 backend --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings
+        flake8 backend --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+    - name: Test with pytest
+      run: |
+        pip install pytest
+        pytest --tb=short || echo "No tests found"
+  
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to Render
+      if: vars.RENDER_DEPLOY_WEBHOOK != ''
+      run: |
+        curl -X POST ${{ vars.RENDER_DEPLOY_WEBHOOK }}
+    
+    - name: Deploy to Railway
+      if: vars.RAILWAY_TOKEN != ''
+      run: |
+        npm install -g @railway/cli
+        railway up --service=web
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

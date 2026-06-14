@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Career Platform{% endblock %}</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-mode.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    
+    <style>
+        :root {
+            --primary-color: #0A84FF;
+            --primary-dark: #0066CC;
+            --secondary-color: #30B0C0;
+            --success-color: #34C759;
+            --warning-color: #FF9500;
+            --danger-color: #FF3B30;
+            --light-bg: #F5F5F7;
+            --light-text: #333;
+            --light-border: #E5E5EA;
+            --sidebar-width: 280px;
+            --topbar-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Topbar */
+        .topbar {
+            height: var(--topbar-height);
+            background: white;
+            border-bottom: 1px solid var(--light-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .topbar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topbar-search {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .topbar-search input {
+            background: var(--light-bg);
+            border: 1px solid var(--light-border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .topbar-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            transition: color 0.3s;
+        }
+
+        .topbar-icon:hover {
+            color: var(--primary-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .user-profile:hover {
+            background-color: var(--light-bg);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-info small {
+            display: block;
+            color: #999;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: var(--topbar-height);
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: white;
+            border-right: 1px solid var(--light-border);
+            overflow-y: auto;
+            padding: 2rem 0;
+            z-index: 999;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background-color: rgba(10, 132, 255, 0.1);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--topbar-height);
+            min-height: calc(100vh - var(--topbar-height));
+            padding: 2rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .page-title i {
+            color: var(--primary-color);
+        }
+
+        .page-subtitle {
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        /* Cards */
+        .card {
+            border: 1px solid var(--light-border);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            border-bottom: 1px solid var(--light-border);
+            padding: 1.5rem;
+            background: transparent;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: white;
+            border: 1px solid var(--light-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(10, 132, 255, 0.15);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.primary {
+            background: rgba(10, 132, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .stat-icon.success {
+            background: rgba(52, 199, 89, 0.1);
+            color: var(--success-color);
+        }
+
+        .stat-icon.warning {
+            background: rgba(255, 149, 0, 0.1);
+            color: var(--warning-color);
+        }
+
+        .stat-icon.secondary {
+            background: rgba(48, 176, 192, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .stat-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--light-text);
+        }
+
+        .stat-content p {
+            margin: 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        /* Dark Mode */
+        html[data-bs-theme="dark"] {
+            --light-bg: #1C1C1E;
+            --light-text: #FFFFFF;
+            --light-border: #3A3A3C;
+        }
+
+        html[data-bs-theme="dark"] .topbar {
+            background: #2C2C2E;
+            border-bottom-color: var(--light-border);
+        }
+
+        html[data-bs-theme="dark"] .sidebar {
+            background: #2C2C2E;
+            border-right-color: var(--light-border);
+        }
+
+        html[data-bs-theme="dark"] .card {
+            background: #2C2C2E;
+            border-color: var(--light-border);
+        }
+
+        html[data-bs-theme="dark"] .stat-box {
+            background: #2C2C2E;
+            border-color: var(--light-border);
+        }
+
+        html[data-bs-theme="dark"] .topbar-search input {
+            background: #3A3A3C;
+            border-color: var(--light-border);
+            color: white;
+        }
+
+        html[data-bs-theme="dark"] .topbar-search input::placeholder {
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            :root {
+                --sidebar-width: 0;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                width: 250px;
+                z-index: 2000;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .topbar-search {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --topbar-height: 60px;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <button class="btn btn-link d-lg-none" id="sidebarToggle" style="padding: 0;">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="/user/dashboard" class="topbar-logo">
+                <i class="fas fa-rocket"></i> AI Career
+            </a>
+            <div class="topbar-search d-none d-md-block">
+                <input type="text" class="form-control" placeholder="Search jobs, courses...">
+            </div>
+        </div>
+        
+        <div class="topbar-right">
+            <i class="fas fa-bell topbar-icon" title="Notifications"></i>
+            <i class="fas fa-moon topbar-icon" id="darkModeToggle" title="Toggle Dark Mode"></i>
+            
+            <div class="dropdown">
+                <div class="user-profile" data-bs-toggle="dropdown">
+                    <div class="user-avatar">{{ user.first_name[0]|upper if user.first_name else 'U' }}</div>
+                    <div class="d-none d-md-block">
+                        <strong>{{ user.first_name or user.username }}</strong>
+                        <small>Member</small>
+                    </div>
+                </div>
+                
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/user/profile"><i class="fas fa-user-circle"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Main</div>
+            <a href="/user/dashboard" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <i class="fas fa-chart-bar"></i>
+                <span>Dashboard</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Career</div>
+            <a href="/user/resume" class="nav-link">
+                <i class="fas fa-file-pdf"></i>
+                <span>Resume</span>
+            </a>
+            <a href="/career/analysis" class="nav-link">
+                <i class="fas fa-brain"></i>
+                <span>Career Analysis</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Opportunities</div>
+            <a href="/jobs" class="nav-link">
+                <i class="fas fa-briefcase"></i>
+                <span>Job Board</span>
+            </a>
+            <a href="/jobs/saved" class="nav-link">
+                <i class="fas fa-heart"></i>
+                <span>Saved Jobs</span>
+            </a>
+            <a href="/jobs/applications" class="nav-link">
+                <i class="fas fa-check-circle"></i>
+                <span>Applications</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Learning</div>
+            <a href="/courses" class="nav-link">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/courses/my-courses" class="nav-link">
+                <i class="fas fa-book"></i>
+                <span>My Courses</span>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">More</div>
+            <a href="/analytics" class="nav-link">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="/user/profile" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/user/settings" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sidebar toggle
+        document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            if (sidebar && toggle && !sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Dark mode toggle
+        document.getElementById('darkModeToggle')?.addEventListener('click', function() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-bs-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            this.classList.toggle('fa-moon');
+            this.classList.toggle('fa-sun');
+        });
+
+        // Initialize theme on load
+        window.addEventListener('load', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.getElementById('darkModeToggle').classList.remove('fa-moon');
+                document.getElementById('darkModeToggle').classList.add('fa-sun');
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

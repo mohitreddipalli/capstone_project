@@ -1,0 +1,190 @@
+{% extends "authenticated_base.html" %}
+
+{% block title %}My Applications - AI Career Platform{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1><i class="fas fa-file-contract"></i> My Applications</h1>
+        <p class="text-muted">Track and manage all your job applications</p>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Application Stats -->
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--primary-color);">12</h4>
+                    <p class="text-muted mb-0">Total Applications</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--warning-color);">3</h4>
+                    <p class="text-muted mb-0">Under Review</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--success-color);">2</h4>
+                    <p class="text-muted mb-0">Shortlisted</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 style="color: var(--danger-color);">7</h4>
+                    <p class="text-muted mb-0">Rejected</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications List -->
+        <div class="col-12">
+            <!-- Filter Tabs -->
+            <ul class="nav nav-tabs mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all">All (12)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review">Under Review (3)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="shortlist-tab" data-bs-toggle="tab" data-bs-target="#shortlist">Shortlisted (2)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="rejected-tab" data-bs-toggle="tab" data-bs-target="#rejected">Rejected (7)</button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="all">
+                    <!-- Application Card 1 - Shortlisted -->
+                    <div class="application-card card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="card-title mb-1">Senior Full Stack Developer</h5>
+                                    <p class="card-text text-muted mb-2">Tech Innovations Inc.</p>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Applied: June 12, 2024 • </small>
+                                        <span class="badge bg-success">Shortlisted</span>
+                                    </div>
+                                    <small>Next step: Interview scheduled for June 25, 2024 at 2:00 PM</small>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="btn btn-sm btn-primary me-2">View Details</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Card 2 - Under Review -->
+                    <div class="application-card card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="card-title mb-1">Machine Learning Engineer</h5>
+                                    <p class="card-text text-muted mb-2">AI Solutions Corp</p>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Applied: June 10, 2024 • </small>
+                                        <span class="badge bg-warning">Under Review</span>
+                                    </div>
+                                    <small>Waiting for recruiter response...</small>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="btn btn-sm btn-primary me-2">View Details</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Withdraw</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Card 3 - Shortlisted -->
+                    <div class="application-card card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="card-title mb-1">Frontend Developer</h5>
+                                    <p class="card-text text-muted mb-2">Web Design Studios</p>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Applied: June 8, 2024 • </small>
+                                        <span class="badge bg-success">Shortlisted</span>
+                                    </div>
+                                    <small>Next step: Final round interview</small>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="btn btn-sm btn-primary me-2">View Details</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Card 4 - Rejected -->
+                    <div class="application-card card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="card-title mb-1">Backend Developer</h5>
+                                    <p class="card-text text-muted mb-2">Cloud Systems Inc.</p>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Applied: June 5, 2024 • </small>
+                                        <span class="badge bg-danger">Rejected</span>
+                                    </div>
+                                    <small>Thank you for your interest. We've decided to move forward with other candidates.</small>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="btn btn-sm btn-primary me-2">View Details</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Similar Jobs</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="review">
+                    <!-- Under review applications -->
+                    <p class="text-muted">2 applications currently under review...</p>
+                </div>
+
+                <div class="tab-pane fade" id="shortlist">
+                    <!-- Shortlisted applications -->
+                    <p class="text-muted">2 applications have been shortlisted</p>
+                </div>
+
+                <div class="tab-pane fade" id="rejected">
+                    <!-- Rejected applications -->
+                    <p class="text-muted">7 applications were not selected</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// View Details
+document.querySelectorAll('.application-card .btn-primary').forEach(btn => {
+    btn.addEventListener('click', function() {
+        alert('Opening application details...');
+    });
+});
+
+// Withdraw/Message/Similar Jobs
+document.querySelectorAll('.application-card .btn-outline-secondary').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const text = this.textContent.trim();
+        alert(text + ' action clicked');
+    });
+});
+</script>
+{% endblock %}
