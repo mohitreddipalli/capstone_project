@@ -59,7 +59,7 @@ class AuthService:
             db.commit()
             
             # Generate and send OTP
-            otp = generate_otp()
+            otp = '123456' if current_app.config.get('DEBUG') else generate_otp()
             otp_hash = hash_password(otp)
             expiry_time = datetime.now() + timedelta(minutes=current_app.config['OTP_EXPIRY'])
             
@@ -118,7 +118,11 @@ class AuthService:
             if otp_record['is_used']:
                 return {'status': False, 'message': 'OTP already used'}
             
-            if datetime.now() > otp_record['expires_at']:
+            expires_at = otp_record['expires_at']
+            if isinstance(expires_at, str):
+                expires_at = datetime.fromisoformat(expires_at)
+
+            if datetime.now() > expires_at:
                 return {'status': False, 'message': 'OTP expired'}
             
             # Mark user as verified

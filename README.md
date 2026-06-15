@@ -195,7 +195,6 @@ ai-career-platform/
 
 ### Prerequisites
 - Python 3.10 or higher
-- MySQL 8.0 or higher
 - pip package manager
 - Git
 
@@ -218,24 +217,20 @@ ai-career-platform/
    pip install -r requirements.txt
    ```
 
-4. **Setup database**
-   ```bash
-   mysql -u root -p < database/schema.sql
-   ```
-
-5. **Configure environment variables**
+4. **Configure environment variables**
    ```bash
    cp .env.example .env
-   # Edit .env with your configuration
+   # Optional: edit .env with your configuration
    ```
 
-6. **Run the application**
+5. **Run the application without database**
    ```bash
-   cd backend
-   python run.py
+   python backend/run_demo.py
    ```
 
    The application will be available at `http://localhost:5000`
+
+   Use `backend/run.py` only after configuring a real MySQL database.
 
 ## 🔐 Authentication & Security
 

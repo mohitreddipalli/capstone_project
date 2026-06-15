@@ -389,24 +389,24 @@ def internal_error(error):
 if __name__ == '__main__':
     # Get environment settings
     flask_env = os.getenv('FLASK_ENV', 'development')
-    debug_mode = os.getenv('DEBUG', 'True').lower() == 'true'
+    debug_mode = os.getenv('DEBUG', 'False').lower() == 'true'
     port = int(os.getenv('PORT', 5000))
     
     # Only show banner in development
     if flask_env == 'development':
         print("\n" + "="*60)
-        print("🚀 AI Career Development Platform")
+        print("AI Career Development Platform")
         print("="*60)
-        print("\n✅ Demo Mode (No Database Required)")
-        print("\n📝 Test Credentials:")
+        print("\nDemo Mode (No Database Required)")
+        print("\nTest Credentials:")
         print("   Email: demo@example.com (after registration)")
         print("   OTP: Any 6-digit code (demo accepts all)")
-        print(f"\n🌐 Server: http://localhost:{port}")
+        print(f"\nServer: http://localhost:{port}")
         print(f"   Home: http://localhost:{port}/")
         print(f"   Register: http://localhost:{port}/auth/register")
         print(f"   Login: http://localhost:{port}/auth/login")
         print(f"   Dashboard: http://localhost:{port}/user/dashboard")
-        print("\n💡 Stop server: Press Ctrl+C")
+        print("\nStop server: Press Ctrl+C")
         print("="*60 + "\n")
     
     # Run server

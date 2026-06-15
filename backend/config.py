@@ -6,8 +6,19 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 
-# Load environment variables from .env file
+BASE_DIR = os.path.dirname(__file__)
+
+# Load environment variables from the project root and backend/.env.
 load_dotenv()
+load_dotenv(os.path.join(BASE_DIR, '.env'), override=False)
+
+
+def env_bool(name, default=False):
+    """Read a boolean environment variable safely."""
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {'1', 'true', 'yes', 'on'}
 
 
 class Config:
@@ -15,11 +26,15 @@ class Config:
     
     # Flask Settings
     FLASK_ENV = os.getenv('FLASK_ENV', 'development')
-    DEBUG = os.getenv('FLASK_DEBUG', True)
+    DEBUG = env_bool('FLASK_DEBUG', True)
     TESTING = False
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
+    APP_URL = os.getenv('APP_URL', 'http://localhost:5000')
     
     # Database Configuration
+    DATABASE_TYPE = os.getenv('DATABASE_TYPE', 'sqlite').lower()
+    DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///ai_career.db')
+    SQLITE_DB_PATH = os.getenv('SQLITE_DB_PATH', os.path.join(BASE_DIR, 'ai_career.db'))
     MYSQL_HOST = os.getenv('DB_HOST', 'localhost')
     MYSQL_USER = os.getenv('DB_USER', 'root')
     MYSQL_PASSWORD = os.getenv('DB_PASSWORD', '')
@@ -29,14 +44,14 @@ class Config:
     
     # Session Configuration
     PERMANENT_SESSION_LIFETIME = timedelta(days=14)
-    SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'False') == 'True'
-    SESSION_COOKIE_HTTPONLY = os.getenv('SESSION_COOKIE_HTTPONLY', 'True') == 'True'
+    SESSION_COOKIE_SECURE = env_bool('SESSION_COOKIE_SECURE', False)
+    SESSION_COOKIE_HTTPONLY = env_bool('SESSION_COOKIE_HTTPONLY', True)
     SESSION_COOKIE_SAMESITE = os.getenv('SESSION_COOKIE_SAMESITE', 'Lax')
     
     # Email Configuration
     MAIL_SERVER = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
     MAIL_PORT = int(os.getenv('MAIL_PORT', 587))
-    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', 'True') == 'True'
+    MAIL_USE_TLS = env_bool('MAIL_USE_TLS', True)
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME')
@@ -50,7 +65,7 @@ class Config:
     MAX_CONTENT_LENGTH = int(os.getenv('MAX_CONTENT_LENGTH', 16777216))  # 16MB
     
     # Security
-    CSRF_ENABLED = os.getenv('CSRF_ENABLED', 'True') == 'True'
+    CSRF_ENABLED = env_bool('CSRF_ENABLED', True)
     
     # JWT Configuration
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'jwt-secret-key-change-in-production')

@@ -3,7 +3,7 @@ Flask Application Factory
 Initializes and configures the Flask application
 """
 
-from flask import Flask
+from flask import Flask, g, render_template
 from config import config
 import os
 
@@ -64,8 +64,10 @@ def register_blueprints(app):
 
 def init_db(app):
     """Initialize database connection"""
-    # Database initialization will be done when routes are accessed
-    pass
+    from app.utils.helpers import close_db, init_sqlite_db
+
+    init_sqlite_db(app)
+    app.teardown_appcontext(close_db)
 
 
 def register_error_handlers(app):
@@ -91,5 +93,11 @@ def register_context_processors(app):
     def inject_config():
         return {
             'app_name': app.config.get('APP_NAME', 'AI Career Platform'),
-            'flask_env': app.config.get('FLASK_ENV')
+            'flask_env': app.config.get('FLASK_ENV'),
+            'user': getattr(g, 'user', None)
         }
+
+
+    @app.route('/')
+    def home():
+        return render_template('home.html')

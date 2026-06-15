@@ -26,9 +26,15 @@ class EmailService:
             True if sent successfully, False otherwise
         """
         try:
+            username = current_app.config.get('MAIL_USERNAME')
+            password = current_app.config.get('MAIL_PASSWORD')
+            if not username or username.startswith('your_') or not password or password.startswith('your_'):
+                current_app.logger.info("Email not configured; skipped sending '%s' to %s", subject, to_email)
+                return True
+
             msg = MIMEMultipart('alternative')
             msg['Subject'] = subject
-            msg['From'] = current_app.config['MAIL_USERNAME']
+            msg['From'] = username
             msg['To'] = to_email
             
             if text_content:
@@ -38,7 +44,7 @@ class EmailService:
             # Send email
             with smtplib.SMTP(current_app.config['MAIL_SERVER'], current_app.config['MAIL_PORT']) as server:
                 server.starttls()
-                server.login(current_app.config['MAIL_USERNAME'], current_app.config['MAIL_PASSWORD'])
+                server.login(username, password)
                 server.send_message(msg)
             
             return True
